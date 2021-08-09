@@ -1,5 +1,5 @@
-import { $ } from "./utils/util.js";
+import { $ } from './utils/util.js';
 
-import App from "./App.js";
+import App from './App.js';
 
-new App($("#app"));
+new App($('#app'));
