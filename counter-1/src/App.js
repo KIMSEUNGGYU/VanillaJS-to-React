@@ -1,6 +1,6 @@
-import { $ } from "./utils/util.js";
+import { $ } from './utils/util.js';
 
-import Component from "./components/Component.js";
+import Component from './components/Component.js';
 
 export default class App extends Component {
   constructor(...rest) {
@@ -10,8 +10,8 @@ export default class App extends Component {
 
   componentDidMount() {
     const { handleIncrease, handleDecrease } = this;
-    $(".increaseBtn").addEventListener("click", handleIncrease.bind(this));
-    $(".decreaseBtn").addEventListener("click", handleDecrease.bind(this));
+    $('.increaseBtn').addEventListener('click', handleIncrease.bind(this));
+    $('.decreaseBtn').addEventListener('click', handleDecrease.bind(this));
   }
   template() {
     return `

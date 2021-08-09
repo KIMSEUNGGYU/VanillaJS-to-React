@@ -9,7 +9,7 @@ export default class Component {
   setState(newState) {
     this.state = newState;
     this.render();
-    console.log(this.state, "setState");
+    console.log(this.state, 'setState');
   }
   componentDidMount() {
     // 이벤트 등록
