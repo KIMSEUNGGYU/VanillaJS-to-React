@@ -20,23 +20,33 @@ const initialState = [
   },
 ];
 
+const FILTER = Object.freeze({
+  allView: '전체보기',
+  activeView: '활성보기',
+  inactiveView: '비활성보기',
+});
+
 let id = 4;
 export default class App extends Component {
   constructor(...rest) {
     super(...rest);
     this.setState({
       todoList: initialState,
+      filter: 'allView',
     });
   }
 
   componentDidMount() {
-    const { handleAddTodoItem, handleTodoClick } = this;
+    const { handleAddTodoItem, handleTodoClick, handleFilterClick } = this;
     $('.todoInputForm').addEventListener('submit', handleAddTodoItem);
     $('.list').addEventListener('click', handleTodoClick);
+    $('.buttonGroups').addEventListener('click', handleFilterClick);
   }
 
   template() {
-    const { todoList } = this.state;
+    let { todoList, filter } = this.state;
+
+    todoList = this.handleFilteredTodoList(todoList, filter);
 
     return `
     <h1>TODO-LIST</h1>
@@ -48,23 +58,23 @@ export default class App extends Component {
       ${todoList
         .map(
           (todoItem) => `
-        <li data-id=${todoItem.id}>
-          <span style="text-decoration: ${todoItem.done ? 'line-through' : 'none'}">${
-            todoItem.text
-          }</span>
-          <button class="deleteBtn">삭제</button>
-          <button class="toggleBtn" style="color: ${todoItem.done ? 'red' : 'blue'}">${
-            todoItem.done ? '비활성' : '활성'
-          }</button>
-        </li>
-      `,
+            <li data-id=${todoItem.id}>
+              <span style="text-decoration: ${todoItem.done ? 'line-through' : 'none'}">
+                ${todoItem.text}
+              </span>
+              <button class="deleteBtn">삭제</button>
+              <button class="toggleBtn" style="color: ${todoItem.done ? 'red' : 'blue'}">
+                ${todoItem.done ? '비활성' : '활성'}
+              </button>
+            </li>
+          `,
         )
         .join('')}
     </ul>
     <div class="buttonGroups">
-      <button>전체보기</button>
-      <button>활성보기</button>
-      <button>비활성 보기</button>
+      <button class="allView">${FILTER['allView']}</button>
+      <button class="activeView" style="color: blue">${FILTER['activeView']}</button>
+      <button class="inactiveView" style="color: red">${FILTER['inactiveView']}</button>
     </div>
     `;
   }
@@ -72,14 +82,15 @@ export default class App extends Component {
   // custom
   handleAddTodoItem = (event) => {
     event.preventDefault();
+
     const text = $('.todoInput').value;
+    if (!text) return; // 방어 코드 (입력 없으면 아무동작 안함)
 
     const todoItem = {
       id: id++,
       text,
       done: false,
     };
-    // console.log('Test', todoItem);
 
     const { state } = this;
     this.setState({
@@ -119,14 +130,34 @@ export default class App extends Component {
     const id = target.closest('li')?.dataset.id;
     if (!id) return; // 방어 코드
 
-    if (target.className === 'deleteBtn') {
+    if (target.classList.contains('deleteBtn')) {
       this.handleRemoveTodoItem(id);
       return;
     }
 
-    if (target.className === 'toggleBtn') {
+    if (target.classList.contains('toggleBtn')) {
       this.handleToggleTodoItem(id);
       return;
     }
+  };
+
+  handleFilterClick = ({ target }) => {
+    if (target.nodeName !== 'BUTTON') return;
+
+    const filter = target.className;
+    if (!filter) return;
+
+    this.setState({
+      ...this.state,
+      filter,
+    });
+  };
+
+  handleFilteredTodoList = (todoList, filter) => {
+    if (filter === 'allView') return todoList;
+
+    return todoList.filter((todoItem) =>
+      filter === 'activeView' ? !todoItem.done : !!todoItem.done,
+    );
   };
 }
