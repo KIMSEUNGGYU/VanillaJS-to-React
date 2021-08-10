@@ -23,21 +23,22 @@
 
 - [ ] 각 단계별로 기능을 구현할 때 TDD 또는 간단한 미션(Counter, Todo-list 등)을 통해 구현하기!
 
-
 ## App 화면
 
 ### Counter App
 
-![Untitled (11)](https://user-images.githubusercontent.com/45627868/128873490-9004a63f-2d52-40ab-b87a-8da72c973414.png)
+![COUNTER](https://user-images.githubusercontent.com/45627868/128938205-ac1eef6f-eba7-4d19-8ec3-c4851ce7c7df.PNG)
 
 ### Todo-List App
 
-![todo](https://user-images.githubusercontent.com/45627868/128873207-7ea9aa6d-0836-432b-8e77-2f879f284dc5.PNG)
+![TODO-LIST](https://user-images.githubusercontent.com/45627868/128938090-38b2bee1-37b8-47cb-962c-3a0683a1dc66.PNG)
 
 ## 간단 DEMO
 
 ### Counter App
 
+![COUNTER](https://user-images.githubusercontent.com/45627868/128938545-a1441df7-7819-4d50-8e4d-69452d977428.gif)
+
 ### Todo-List App
 
-![TODO-LIST](https://user-images.githubusercontent.com/45627868/128873535-b8867cd4-6ee4-4c5d-a0d8-f8669a9a2916.gif)
+![TODO-LIST](https://user-images.githubusercontent.com/45627868/128938133-c6d2605a-7e94-4a0d-8c1e-ac26ce94f55b.gif)
