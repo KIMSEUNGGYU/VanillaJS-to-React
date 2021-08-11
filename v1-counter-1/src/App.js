@@ -1,6 +1,6 @@
 import { $ } from './utils/util.js';
 
-import Component from './components/Component.js';
+import Component from './core/Component.js';
 
 export default class App extends Component {
   constructor(...rest) {

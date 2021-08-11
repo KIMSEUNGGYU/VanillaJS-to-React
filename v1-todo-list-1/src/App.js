@@ -1,7 +1,7 @@
 import { $ } from './utils/util.js';
 import { initialState } from './data/data.js';
 
-import Component from './components/Component.js';
+import Component from './core/Component.js';
 
 const FILTER = Object.freeze({
   allView: '전체보기',
