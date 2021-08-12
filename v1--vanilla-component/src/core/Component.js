@@ -5,12 +5,13 @@ export default class Component {
     this.$target = $target;
     this.props = props;
   }
-  template() {
-    return ``;
-  }
   setState(newState) {
     this.state = newState;
     this.render();
+    console.log("setState", this.state)
+  }
+  template() {
+    return ``;
   }
   render() {
     this.$target.innerHTML = this.template();
