@@ -19,9 +19,9 @@ export default class Counter extends Component {
   template() {
     const { count } = this.props;
     return `
-    <h2 class="counter">${count}</h2>
-    <button class="increaseBtn">+1</button>
-    <button class="decreaseBtn">-1</button>
+      <h2 class="counter">${count}</h2>
+      <button class="increaseBtn">+1</button>
+      <button class="decreaseBtn">-1</button>
     `;
   }
 }

@@ -2,6 +2,7 @@ import { $ } from './utils/util.js';
 import Component from './core/Component.js';
 
 import Counter from './components/Counter.js';
+import DiffInput from './components/DiffInput.js';
 
 export default class App extends Component {
   constructor(...rest) {
@@ -13,12 +14,17 @@ export default class App extends Component {
   }
 
   componentDidMount() {
-    const { handleIncrease, handleDecrease } = this;
+    const { handleIncrease, handleDecrease, handleSetDiff } = this;
 
     new Counter($('.counter'), {
       count: this.state && this.state.count,
       onIncrease: handleIncrease.bind(this),
       onDecrease: handleDecrease.bind(this),
+    });
+
+    new DiffInput($('.diff-form'), {
+      diff: this.state && this.state.diff,
+      onSetDiff: handleSetDiff.bind(this),
     });
   }
 
@@ -56,12 +62,18 @@ export default class App extends Component {
     });
   }
 
-  handleSubmit(event) {
-    event.preventDefault();
+  handleSubmit() {
     const diff = parseInt($('.diffInput').value, 10);
     this.setState({
       ...this.state,
       diff: diff,
+    });
+  }
+
+  handleSetDiff(diff) {
+    this.setState({
+      ...this.state,
+      diff,
     });
   }
 }
