@@ -1,4 +1,4 @@
-function countTest1(testPath) {
+function counterTest1(testPath) {
   beforeEach(() => {
     cy.visit(testPath);
   });
@@ -31,7 +31,7 @@ function countTest1(testPath) {
   });
 }
 
-function countTest2(testPath) {
+function counterTest2(testPath) {
   beforeEach(() => {
     cy.visit(testPath);
   });
@@ -92,12 +92,12 @@ function countTest2(testPath) {
 
 describe('카운터 테스트', () => {
   describe('카운터 컴포넌트 테스트 v1', () => {
-    countTest1('/v1-counter-1/');
+    counterTest1('/v1-counter-1/');
   });
   describe('카운터 컴포넌트 테스트 v2', () => {
-    countTest2('/v1-counter-2/');
+    counterTest2('/v1-counter-2/');
   });
   describe('카운터 컴포넌트 테스트 v3 - components', () => {
-    countTest2('/v1-counter-3-components/');
+    counterTest2('/v1-counter-3-components/');
   });
 });
