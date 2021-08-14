@@ -17,8 +17,8 @@ export default class DiffInput extends Component {
     console.log('template', diff);
     return `
       <form>
-        <input type="number" value="${diff}" />
-        <button type="submit">diff 설정</button>
+        <input class="diffInput" type="number" value="${diff}" />
+        <button class="diffSubmit" type="submit">diff 설정</button>
       </form>
     `;
   }
