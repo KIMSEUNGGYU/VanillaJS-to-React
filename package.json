@@ -1,0 +1,20 @@
+{
+  "name": "VanillaJS-to-React",
+  "version": "1.0.0",
+  "description": "바닐라 자바스크립트를 이용하여 React 흉내내기",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KIMSEUNGGYU/VanillaJS-to-React.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KIMSEUNGGYU/VanillaJS-to-React/issues"
+  },
+  "homepage": "https://github.com/KIMSEUNGGYU/VanillaJS-to-React#readme"
+}
