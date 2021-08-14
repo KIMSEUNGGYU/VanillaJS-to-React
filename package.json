@@ -4,7 +4,8 @@
   "description": "바닐라 자바스크립트를 이용하여 React 흉내내기",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "cypress": "cypress open"
   },
   "repository": {
     "type": "git",
@@ -16,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/KIMSEUNGGYU/VanillaJS-to-React/issues"
   },
-  "homepage": "https://github.com/KIMSEUNGGYU/VanillaJS-to-React#readme"
+  "homepage": "https://github.com/KIMSEUNGGYU/VanillaJS-to-React#readme",
+  "devDependencies": {
+    "cypress": "^8.2.0"
+  }
 }
