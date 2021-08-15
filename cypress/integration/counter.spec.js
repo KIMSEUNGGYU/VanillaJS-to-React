@@ -1,37 +1,4 @@
-function counterTest1(testPath) {
-  beforeEach(() => {
-    cy.visit(testPath);
-  });
-
-  it('화면이 보이는지 테스트', () => {
-    cy.get('h1').should('have.text', 'Counter');
-    cy.get('.counter').should('have.text', '0');
-    cy.get('.increaseBtn').should('have.text', '+1');
-    cy.get('.decreaseBtn').should('have.text', '-1');
-  });
-  it('증가 기능 테스트', () => {
-    cy.get('.counter').should('have.text', 0);
-
-    cy.get('.increaseBtn').click();
-    cy.get('.counter').should('have.text', 1);
-
-    cy.get('.increaseBtn').click();
-    cy.get('.increaseBtn').click();
-    cy.get('.counter').should('have.text', 3);
-  });
-  it('감소 기능 테스트', () => {
-    cy.get('.counter').should('have.text', 0);
-
-    cy.get('.decreaseBtn').click();
-    cy.get('.counter').should('have.text', -1);
-
-    cy.get('.decreaseBtn').click();
-    cy.get('.decreaseBtn').click();
-    cy.get('.counter').should('have.text', -3);
-  });
-}
-
-function counterTest2(testPath) {
+function counterTest(testPath) {
   beforeEach(() => {
     cy.visit(testPath);
   });
@@ -91,13 +58,13 @@ function counterTest2(testPath) {
 }
 
 describe('카운터 테스트', () => {
-  describe('카운터 컴포넌트 테스트 v1', () => {
-    counterTest1('/v1-counter-1/');
+  // describe('카운터 컴포넌트 테스트 v1', () => {
+  //   counterTest('/v1-counter-1/');
+  // });
+  describe('카운터 컴포넌트 테스트 - App', () => {
+    counterTest('/v1-counter-app/');
   });
-  describe('카운터 컴포넌트 테스트 v2', () => {
-    counterTest2('/v1-counter-2/');
-  });
-  describe('카운터 컴포넌트 테스트 v3 - components', () => {
-    counterTest2('/v1-counter-3-components/');
+  describe('카운터 컴포넌트 테스트 - components', () => {
+    counterTest('/v1-counter-components/');
   });
 });
