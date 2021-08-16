@@ -1,4 +1,4 @@
-import { $ } from '../../v1-todo-list-2-components/src/utils/util.js';
+import { $ } from './utils/util.js';
 import * as userAPI from './api/user.js';
 
 import Component from './core/Component.js';
@@ -18,7 +18,7 @@ export default class App extends Component {
 
     this.setState({
       users,
-      user: null
+      user: null,
     });
   }
 
@@ -29,25 +29,29 @@ export default class App extends Component {
       <h1>Async Test</h1>  
       <ul class="user-list">
         ${users
-          .map((user) => `<li style="cursor: pointer" data-id="${user.id}">
+          .map(
+            (user) => `<li style="cursor: pointer" data-id="${user.id}">
               <span> <b>${user.username}</b> (${user.name}) </span>
-            </li>`)
+            </li>`,
+          )
           .join('')}
       </ul>
       <button class="re-fetch">다시 불러오기</button>
       <hr />
-      ${ user ? 
-          `<section class="user">
+      ${
+        user
+          ? `<section class="user">
             <h1>${user.username}</h1>
             <b>Email:</b> ${user.email}
-          </section>` : ""
+          </section>`
+          : ''
       }
     `;
   }
 
   componentDidMount() {
     $('.re-fetch').addEventListener('click', this.handleFeth.bind(this));
-    $('.user-list').addEventListener('click', this.handleClickUser.bind(this))
+    $('.user-list').addEventListener('click', this.handleClickUser.bind(this));
   }
 
   // custom
@@ -61,18 +65,18 @@ export default class App extends Component {
   }
 
   async handleClickUser({ target }) {
-    if(target.tagName === "LI" || target.tagName === "UL") return;
+    if (target.tagName === 'LI' || target.tagName === 'UL') return;
 
-    const id = target.closest('li')?.dataset.id    
-    const user = await userAPI.getUser(id)
+    const id = target.closest('li')?.dataset.id;
+    const user = await userAPI.getUser(id);
 
     this.setState({
       ...this.state,
       user: {
         id: user.id,
         username: user.username,
-        email: user.email
-      }
-    })
+        email: user.email,
+      },
+    });
   }
 }
