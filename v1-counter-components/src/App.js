@@ -7,6 +7,10 @@ import DiffInput from './components/DiffInput.js';
 export default class App extends Component {
   constructor(...rest) {
     super(...rest);
+    this.initialState()
+  }
+
+  async initialState() {
     this.setState({
       count: 0,
       diff: 1,
