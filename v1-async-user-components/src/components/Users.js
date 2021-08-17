@@ -1,16 +1,13 @@
 import Component from '../core/Component.js';
 
-import { getUsers } from '../api/user.js';
 import { $ } from '../utils/util.js';
 
 export default class Users extends Component {
   constructor(...rest) {
     super(...rest);
 
-    this.render();
+    // this.render();
   }
-
-  async init() {}
 
   template() {
     const { users } = this.props;
