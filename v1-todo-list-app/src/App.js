@@ -13,6 +13,10 @@ let id = 4;
 export default class App extends Component {
   constructor(...rest) {
     super(...rest);
+    this.initialState();
+  }
+
+  initialState() {
     this.setState({
       todoList: initialState,
       filter: 'allView',
@@ -21,13 +25,14 @@ export default class App extends Component {
 
   componentDidMount() {
     const { handleAddTodoItem, handleTodoClick, handleFilterClick } = this;
-    $('.todoInputForm').addEventListener('submit', handleAddTodoItem);
+    $('.todoInputForm').addEventListener('submit', handleAddTodoItem.bind(this));
     $('.list').addEventListener('click', handleTodoClick);
     $('.buttonGroups').addEventListener('click', handleFilterClick);
   }
 
   template() {
     let { todoList, filter } = this.state;
+    console.log(this)
 
     todoList = this.handleFilteredTodoList(todoList, filter);
 
@@ -63,7 +68,7 @@ export default class App extends Component {
   }
 
   // custom
-  handleAddTodoItem = (event) => {
+  handleAddTodoItem(event) {
     event.preventDefault();
 
     const text = $('.todoInput').value;
@@ -136,7 +141,7 @@ export default class App extends Component {
     });
   };
 
-  handleFilteredTodoList = (todoList, filter) => {
+  handleFilteredTodoList(todoList, filter) {
     if (filter === 'allView') return todoList;
 
     return todoList.filter((todoItem) =>

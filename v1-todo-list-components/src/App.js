@@ -1,7 +1,6 @@
 import { $ } from './utils/util.js';
 import Component from './core/Component.js';
 import { initialState } from './data/data.js';
-import { FILTER } from './constant.js';
 
 import TodoAppender from './components/TodoAppender.js';
 import TodoList from './components/TodoList.js';
@@ -10,11 +9,15 @@ import TodoFilter from './components/TodoFilter.js';
 export default class App extends Component {
   constructor(...rest) {
     super(...rest);
+  }
+
+  initialState() {
     this.setState({
       todoList: initialState,
       filter: 'allView',
     });
   }
+
   template() {
     return `
       <h1>TodoList</h1>
