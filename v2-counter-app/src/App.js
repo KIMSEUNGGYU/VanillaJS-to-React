@@ -1,9 +1,8 @@
 import { $ } from './utils/util.js';
-
-import { increase, decrease, setDiff } from './module/counter.js';
+import Component from './core/Component.js';
 import store from './store.js';
 
-import Component from './core/Component.js';
+import { decrease, increase, setDiff } from './modules/counter.js';
 
 export default class App extends Component {
   constructor(...rest) {
@@ -12,17 +11,8 @@ export default class App extends Component {
     store.subscribe(this.render.bind(this)); // 필수, 컴포넌트 마다 해당 기능 호출해야함
   }
 
-  componentDidMount() {
-    const { handleIncrease, handleDecrease, handleSubmit } = this;
-    $('.increaseBtn').addEventListener('click', handleIncrease.bind(this));
-    $('.decreaseBtn').addEventListener('click', handleDecrease.bind(this));
-    $('.setDiffForm').addEventListener('submit', handleSubmit.bind(this));
-  }
-
   template() {
-    const { number, diff } = store?.getState();
-    // const number = 1;
-    // const diff = 5;
+    const { diff, number } = store.getState();
 
     return `
       <div class="container">
@@ -38,20 +28,18 @@ export default class App extends Component {
     `;
   }
 
-  // custom handler
-  handleIncrease() {
-    store.dispatch(increase());
-  }
-  handleDecrease() {
-    store.dispatch(decrease());
+  componentDidMount() {
+    $('.increaseBtn').addEventListener('click', () => store.dispatch(increase()));
+    $('.decreaseBtn').addEventListener('click', () => store.dispatch(decrease()));
+    $('.setDiffForm').addEventListener('submit', this.handleChangeDiff);
   }
 
-  handleSubmit(event) {
+  handleChangeDiff(event) {
     event.preventDefault();
 
-    const diff = parseInt($('.diffInput').value, 10);
+    const diff = $('.diffInput')?.value;
     if (!diff) return;
 
-    store.dispatch(setDiff(diff));
+    store.dispatch(setDiff(+diff));
   }
 }

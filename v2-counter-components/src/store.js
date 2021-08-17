@@ -1,8 +1,8 @@
 import { createStore } from './core/Redux.js'; // redux
 
-import counterReducer, { initialState } from './module/counter.js';
+import countReducer, { initialState } from './modules/counter.js';
 
-export default createStore(counterReducer, initialState);
+export default createStore(countReducer, initialState);
 /**
 기존 리액트에서는 index.js 파일에서 해당 함수를 호출하고 stroe 를 생성
 그 후 Provider 를 이용하여 컴포넌트를 전역에서 사용할 수 있게함.

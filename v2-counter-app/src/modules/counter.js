@@ -7,13 +7,11 @@ export const decrease = () => ({ type: DECREASE });
 export const setDiff = (payload) => ({ type: SET_DIFF, payload });
 
 export const initialState = {
-  number: 0,
   diff: 1,
+  number: 0,
 };
 
-export default function counterReducer(state = initialState, action = {}) {
-  const prevState = state;
-
+export default function countReducer(state = initialState, action = {}) {
   switch (action.type) {
     case INCREASE:
       return {
@@ -28,10 +26,9 @@ export default function counterReducer(state = initialState, action = {}) {
     case SET_DIFF:
       return {
         ...state,
-        diff: action?.payload,
+        diff: action.payload,
       };
     default:
       return state;
-    // throw new Error(`존재하지 않는 action 입니다: ${action.type}`);
   }
 }

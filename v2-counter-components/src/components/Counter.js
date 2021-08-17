@@ -1,14 +1,14 @@
-import { $ } from '../utils/util.js';
 import Component from '../core/Component.js';
+import { decrease, increase } from '../modules/counter.js';
 
 import store from '../store.js';
-import { decrease, increase } from '../module/counter.js';
+import { $ } from '../utils/util.js';
 
 export default class Counter extends Component {
   constructor(...rest) {
     super(...rest);
 
-    store.subscribe(this.render.bind(this)); // 필수, 컴포넌트 마다 해당 기능 호출해야함
+    store.subscribe(this.render.bind(this));
   }
 
   template() {
@@ -22,16 +22,7 @@ export default class Counter extends Component {
   }
 
   componentDidMount() {
-    $('.increaseBtn').addEventListener('click', this.handleIncrease);
-    $('.decreaseBtn').addEventListener('click', this.handleDecrease);
-  }
-
-  // custom fucntion
-  handleIncrease() {
-    store.dispatch(increase());
-  }
-
-  handleDecrease() {
-    store.dispatch(decrease());
+    $('.increaseBtn').addEventListener('click', () => store.dispatch(increase()));
+    $('.decreaseBtn').addEventListener('click', () => store.dispatch(decrease()));
   }
 }
