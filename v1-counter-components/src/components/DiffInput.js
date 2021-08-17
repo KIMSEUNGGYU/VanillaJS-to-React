@@ -6,10 +6,6 @@ export default class DiffInput extends Component {
     super(...rest);
   }
 
-  componentDidMount() {
-    $('form').addEventListener('submit', this.handleSubmit.bind(this));
-  }
-
   template() {
     const { diff } = this.props;
 
@@ -19,6 +15,10 @@ export default class DiffInput extends Component {
         <button class="diffSubmit" type="submit">diff 설정</button>
       </form>
     `;
+  }
+
+  componentDidMount() {
+    $('form').addEventListener('submit', this.handleSubmit.bind(this));
   }
 
   // custom
