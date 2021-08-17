@@ -5,8 +5,6 @@ import { $ } from '../utils/util.js';
 export default class Users extends Component {
   constructor(...rest) {
     super(...rest);
-
-    // this.render();
   }
 
   template() {

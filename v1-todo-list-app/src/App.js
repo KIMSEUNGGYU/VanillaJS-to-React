@@ -32,7 +32,7 @@ export default class App extends Component {
 
   template() {
     let { todoList, filter } = this.state;
-    console.log(this)
+    console.log(this);
 
     todoList = this.handleFilteredTodoList(todoList, filter);
 
@@ -87,7 +87,7 @@ export default class App extends Component {
     });
 
     $('.todoInput').focus();
-  };
+  }
 
   handleToggleTodoItem = (id) => {
     const { state } = this;
@@ -147,5 +147,5 @@ export default class App extends Component {
     return todoList.filter((todoItem) =>
       filter === 'activeView' ? !todoItem.done : !!todoItem.done,
     );
-  };
+  }
 }

@@ -1,7 +1,7 @@
 export default class Component {
   $target;
-  state;
   props;
+  state;
   constructor($target, props) {
     this.$target = $target;
     this.props = props;
@@ -11,8 +11,6 @@ export default class Component {
 
   async initialState() {
     // 초기 state 초기화 영역
-    // 기존에는 constructor 에서 처리하고자 했으나, constructor 에서 비동기를 따로 처리해야 하므로 
-    // 해당 메소드 생성
     this.render();
   }
 
@@ -33,8 +31,8 @@ export default class Component {
     this.$target.innerHTML = this.template();
     this.componentDidMount();
   }
-  
+
   componentDidMount() {
-     // 이벤트 등록 및 관련(하위) 컴포넌트 생성?
+    // 이벤트 등록 및 관련(하위) 컴포넌트 생성?
   }
 }

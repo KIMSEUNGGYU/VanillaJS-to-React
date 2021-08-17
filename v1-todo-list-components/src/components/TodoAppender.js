@@ -6,7 +6,6 @@ let id = 4;
 export default class TodoAppender extends Component {
   constructor(...rest) {
     super(...rest);
-    this.render();
   }
 
   template() {

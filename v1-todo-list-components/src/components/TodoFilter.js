@@ -6,7 +6,6 @@ import Component from '../core/Component.js';
 export default class TodoFilter extends Component {
   constructor(...rest) {
     super(...rest);
-    this.render();
   }
 
   template() {

@@ -15,12 +15,6 @@ export default class App extends Component {
     });
   }
 
-  componentDidMount() {
-    const { handleIncrease, handleDecrease, handleSubmit } = this;
-    $('.increaseBtn').addEventListener('click', handleIncrease.bind(this));
-    $('.decreaseBtn').addEventListener('click', handleDecrease.bind(this));
-    $('.setDiffForm').addEventListener('submit', handleSubmit.bind(this));
-  }
   template() {
     return `
       <div class="container">
@@ -34,6 +28,13 @@ export default class App extends Component {
         <button class="decreaseBtn">-1</button>
       </div>
     `;
+  }
+
+  componentDidMount() {
+    const { handleIncrease, handleDecrease, handleSubmit } = this;
+    $('.increaseBtn').addEventListener('click', handleIncrease.bind(this));
+    $('.decreaseBtn').addEventListener('click', handleDecrease.bind(this));
+    $('.setDiffForm').addEventListener('submit', handleSubmit.bind(this));
   }
 
   // custom handler

@@ -4,7 +4,6 @@ import Component from '../core/Component.js';
 export default class DiffInput extends Component {
   constructor(...rest) {
     super(...rest);
-    this.render();
   }
 
   componentDidMount() {
@@ -14,7 +13,6 @@ export default class DiffInput extends Component {
   template() {
     const { diff } = this.props;
 
-    console.log('template', diff);
     return `
       <form>
         <input class="diffInput" type="number" value="${diff}" />
