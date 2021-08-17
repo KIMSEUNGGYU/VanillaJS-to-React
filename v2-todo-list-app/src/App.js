@@ -3,7 +3,7 @@ import { $ } from './utils/util.js';
 import store from './store.js';
 
 import Component from './core/Component.js';
-import { addTodoItem } from './modules/todoList.js';
+import { addTodoItem, changeFilter, deleteTodoItem, toggleTodoItem } from './modules/todoList.js';
 
 const FILTER = Object.freeze({
   allView: '전체보기',
@@ -20,7 +20,8 @@ export default class App extends Component {
   }
 
   template() {
-    const todoList = store.getState();
+    let { todoList, filter } = store.getState();
+    todoList = this._handleFilteredTodoList(todoList, filter);
 
     return `
       <h1>TODO-LIST</h1>
@@ -33,30 +34,33 @@ export default class App extends Component {
           .map(
             (todoItem) => `
         <li data-id=${todoItem.id}>
-        <span style="text-decoration: ${todoItem.done ? 'line-through' : 'none'}">
-          ${todoItem.text}
-        </span>
-        <button class="deleteBtn">삭제</button>
-        <button class="toggleBtn" style="color: ${todoItem.done ? 'red' : 'blue'}">
-          ${todoItem.done ? '비활성' : '활성'}
-        </button>
+          <span style="text-decoration: ${todoItem.done ? 'line-through' : 'none'}">
+            ${todoItem.text}
+          </span>
+          <button class="deleteBtn">삭제</button>
+          <button class="toggleBtn" style="color: ${todoItem.done ? 'red' : 'blue'}">
+            ${todoItem.done ? '비활성' : '활성'}
+          </button>
       </li>
       `,
           )
           .join('')}
       </ul>
       <div class="buttonGroups">
-      <button class="allView">${FILTER['allView']}</button>
-      <button class="activeView" style="color: blue">${FILTER['activeView']}</button>
-      <button class="inactiveView" style="color: red">${FILTER['inactiveView']}</button>
-    </div>
+        <button class="allView">${FILTER['allView']}</button>
+        <button class="activeView" style="color: blue">${FILTER['activeView']}</button>
+        <button class="inactiveView" style="color: red">${FILTER['inactiveView']}</button>
+      </div>  
     `;
   }
 
   componentDidMount() {
     $('.todoInputForm').addEventListener('submit', this.handleTodoItem);
+    $('.list').addEventListener('click', this.handleToggleAndDeleteItem);
+    $('.buttonGroups').addEventListener('click', this.handleFilterClick);
   }
 
+  // custom
   handleTodoItem(event) {
     event.preventDefault();
 
@@ -71,5 +75,39 @@ export default class App extends Component {
       }),
     );
     $('.todoInput')?.focus();
+  }
+
+  handleToggleAndDeleteItem({ target }) {
+    if (target.nodeName !== 'BUTTON') return;
+
+    const id = target.closest('li')?.dataset.id;
+    if (!id) return; // 방어 코드
+
+    if (target.classList.contains('deleteBtn')) {
+      store.dispatch(deleteTodoItem(+id));
+      return;
+    }
+
+    if (target.classList.contains('toggleBtn')) {
+      store.dispatch(toggleTodoItem(+id));
+      return;
+    }
+  }
+
+  handleFilterClick = ({ target }) => {
+    if (target.nodeName !== 'BUTTON') return;
+
+    const filter = target.className;
+    if (!filter) return;
+
+    store.dispatch(changeFilter(filter));
+  };
+
+  _handleFilteredTodoList(todoList, filter) {
+    if (filter === 'allView') return todoList;
+
+    return todoList.filter((todoItem) =>
+      filter === 'activeView' ? !todoItem.done : !!todoItem.done,
+    );
   }
 }
