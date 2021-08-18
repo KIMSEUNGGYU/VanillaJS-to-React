@@ -12,7 +12,7 @@ export default class Users extends Component {
     if (!users) return '';
 
     return `
-      <ul>
+      <ul class="user-list">
       ${users
         ?.map(
           (user) => `<li style="cursor: pointer" data-id="${user.id}">
@@ -21,7 +21,7 @@ export default class Users extends Component {
         )
         .join('')}
       </ul>
-      <button>다시 불러오기</button>
+      <button class="re-fetch">다시 불러오기</button>
     `;
   }
 
