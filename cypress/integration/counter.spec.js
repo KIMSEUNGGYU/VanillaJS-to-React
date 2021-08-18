@@ -61,10 +61,16 @@ describe('카운터 테스트', () => {
   // describe('카운터 컴포넌트 테스트 v1', () => {
   //   counterTest('/v1-counter-1/');
   // });
-  describe('카운터 컴포넌트 테스트 - App', () => {
+  describe('V1 - 카운터 컴포넌트 테스트 - App', () => {
     counterTest('/v1-counter-app/');
   });
-  describe('카운터 컴포넌트 테스트 - components', () => {
+  describe('V1 - 카운터 컴포넌트 테스트 - components', () => {
     counterTest('/v1-counter-components/');
+  });
+  describe('V2 - 카운터 컴포넌트 테스트 - App', () => {
+    counterTest('/v2-counter-app/');
+  });
+  describe('V2 - 카운터 컴포넌트 테스트 - components', () => {
+    counterTest('/v2-counter-components/');
   });
 });
