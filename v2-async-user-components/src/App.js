@@ -1,18 +1,14 @@
 import { $ } from './utils/util.js';
-import store from './store.js';
 import Component from './core/Component.js';
 
 import Users from './components/Users.js';
 import User from './components/User.js';
 
+import { userStore } from './store.js';
+
 export default class App extends Component {
   constructor(...rest) {
     super(...rest);
-
-    // store.subscribe(this.render.bind(this)); // 필수, 컴포넌트 마다 해당 기능 호출해야함
-    // 컴포너트 분리시 App 에다가 하면 에러 발생.. ? 왜??
-    // 컴포넌트 분리시 App 에서는 굳이 render 를 하지 않아도됨?
-    // 왜냐하면 기본틀은 첫 번째 렌더링되고 재 렌더링할 필요 없음
   }
 
   template() {
@@ -24,7 +20,13 @@ export default class App extends Component {
   }
 
   componentDidMount() {
-    new Users($('.user-list'));
-    new User($('.user'));
+    const users = new Users($('.user-list'));
+    const user = new User($('.user'));
+
+    const updatUsers = () => console.log('update state', userStore.getState());
+
+    userStore.subscribe(() => {
+      users.render(), user.render(), updatUsers();
+    });
   }
 }

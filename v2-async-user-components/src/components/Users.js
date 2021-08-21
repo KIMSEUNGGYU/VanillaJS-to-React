@@ -1,15 +1,13 @@
 import Component from '../core/Component.js';
 
 import { $ } from '../utils/util.js';
-import store from '../store.js';
+import { userStore } from '../store.js';
 import * as userAPI from '../api/user.js';
 import { setUsers, setUser } from '../modules/users.js';
 
 export default class Users extends Component {
   constructor(...rest) {
     super(...rest);
-
-    store.subscribe(this.render.bind(this));
   }
 
   async initialState() {
@@ -17,7 +15,7 @@ export default class Users extends Component {
   }
 
   template() {
-    const { users } = store.getState();
+    const { users } = userStore.getState();
 
     return `
       <ul class="user-list">
@@ -34,21 +32,30 @@ export default class Users extends Component {
   }
 
   componentDidMount() {
-    $('.re-fetch').addEventListener('click', this.handleSetUsers);
+    $('.re-fetch').addEventListener('click', this.handleRefetchClick.bind(this));
     $('.user-list').addEventListener('click', this.handleSetUser);
+  }
+
+  // custom
+  handleRefetchClick({ target }) {
+    if (target.tagName !== 'BUTTON') return;
+
+    this.handleSetUsers();
   }
 
   async handleSetUsers() {
     const users = await userAPI.getUsers();
-    store.dispatch(setUsers(users));
+    userStore.dispatch(setUsers(users));
   }
 
   async handleSetUser({ target }) {
-    if (target.tagName === 'LI' || target.tagName === 'UL') return;
+    // if (!(target.tagName === 'LI' || target.tagName === 'UL')) return;
+    if (target.tagName === 'BUTTON') return;
+    console.log(target);
 
     const id = target.closest('li')?.dataset.id;
     const user = await userAPI.getUser(id);
 
-    store.dispatch(setUser(user));
+    userStore.dispatch(setUser(user));
   }
 }

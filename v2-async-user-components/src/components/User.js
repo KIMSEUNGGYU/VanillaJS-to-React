@@ -1,16 +1,14 @@
 import Component from '../core/Component.js';
 
-import store from '../store.js';
+import { userStore } from '../store.js';
 
 export default class User extends Component {
   constructor(...rest) {
     super(...rest);
-
-    store.subscribe(this.render.bind(this));
   }
 
   template() {
-    const { user } = store.getState();
+    const { user } = userStore.getState();
 
     return `
       ${
