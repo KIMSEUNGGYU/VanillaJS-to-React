@@ -96,19 +96,19 @@ function todoListTest(testPath) {
 }
 
 describe('투두리스트 테스트', () => {
-  describe('투두리스트 컴포넌트 테스트 - App', () => {
+  describe('V1 - 투두리스트 컴포넌트 테스트 - App', () => {
     todoListTest('/v1-todo-list-app');
   });
 
-  describe('투두리스트 컴포넌트 테스트 - components', () => {
+  describe('V1 - 투두리스트 컴포넌트 테스트 - components', () => {
     todoListTest('/v1-todo-list-components');
   });
 
-  describe('투두리스트 컴포넌트 테스트 - App', () => {
+  describe('V2 - 투두리스트 컴포넌트 테스트 - App', () => {
     todoListTest('/v2-todo-list-app');
   });
 
-  describe('투두리스트 컴포넌트 테스트 - components', () => {
+  describe('V2 - 투두리스트 컴포넌트 테스트 - components', () => {
     todoListTest('/v2-todo-list-components');
   });
 });
