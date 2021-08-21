@@ -1,3 +1,5 @@
+const ADD_TODO_ITEM_TEXT = 'Cypress TEST';
+
 function todoListTest(testPath) {
   beforeEach(() => {
     cy.visit(testPath);
@@ -8,7 +10,7 @@ function todoListTest(testPath) {
     cy.get('.todoInput').should('be.visible');
     cy.get('.addTodoBtn').should('be.visible');
     cy.get('.list').should('be.visible');
-    cy.get('.buttonGroups').should('be.visible');
+    cy.get('.filter-group').should('be.visible');
     cy.get('.allView').should('be.visible');
     cy.get('.activeView').should('be.visible');
     cy.get('.inactiveView').should('be.visible');
@@ -16,7 +18,6 @@ function todoListTest(testPath) {
 
   it('등록 기능 테스트', () => {
     cy.get('.todoInput').type(`${ADD_TODO_ITEM_TEXT}{enter}`);
-    // cy.get('.list').find('li').eq(-1).contains(`${ADD_TODO_ITEM_TEXT}`);
     cy.get('.list').contains(`${ADD_TODO_ITEM_TEXT}`);
   });
 
@@ -38,6 +39,7 @@ function todoListTest(testPath) {
       expect($lis.eq(1)).to.contain('리액트 흉내내기');
     });
   });
+
   it('토글 기능 테스트', () => {
     cy.get('.list > li').should(($lis) => {
       expect($lis).to.have.length(3);
@@ -56,6 +58,7 @@ function todoListTest(testPath) {
       .find('span')
       .should('have.attr', 'style', 'text-decoration: line-through');
   });
+
   it('필터링 기능 테스트', () => {
     cy.get('.list > li').should(($lis) => {
       expect($lis).to.have.length(3);
@@ -92,14 +95,20 @@ function todoListTest(testPath) {
   });
 }
 
-const ADD_TODO_ITEM_TEXT = 'Cypress TEST';
-
 describe('투두리스트 테스트', () => {
-  xdescribe('투두리스트 컴포넌트 테스트 - App', () => {
+  describe('투두리스트 컴포넌트 테스트 - App', () => {
     todoListTest('/v1-todo-list-app');
   });
 
   describe('투두리스트 컴포넌트 테스트 - components', () => {
     todoListTest('/v1-todo-list-components');
+  });
+
+  describe('투두리스트 컴포넌트 테스트 - App', () => {
+    todoListTest('/v2-todo-list-app');
+  });
+
+  describe('투두리스트 컴포넌트 테스트 - components', () => {
+    todoListTest('/v2-todo-list-components');
   });
 });
