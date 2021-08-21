@@ -37,11 +37,19 @@ function asyncUserTest(testPath) {
 }
 
 describe('ASYNC USER 테스트', () => {
-  describe('ASYNC USER 테스트 - App', () => {
+  describe('V1 - ASYNC USER 테스트 - App', () => {
     asyncUserTest('/v1-async-user-app/');
   });
 
-  describe('ASYNC USER 테스트 - Components', () => {
+  describe('V1 - ASYNC USER 테스트 - Components', () => {
     asyncUserTest('/v1-async-user-components/');
+  });
+
+  describe('V2 - ASYNC USER 테스트 - App', () => {
+    asyncUserTest('/v2-async-user-app/');
+  });
+
+  describe('V2 - ASYNC USER 테스트 - Components', () => {
+    asyncUserTest('/v2-async-user-components/');
   });
 });
