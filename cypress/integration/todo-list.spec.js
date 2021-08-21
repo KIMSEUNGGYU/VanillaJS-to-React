@@ -3,9 +3,6 @@ function todoListTest(testPath) {
     cy.visit(testPath);
   });
 
-  beforeEach(() => {
-    cy.visit(`/v1-todo-list-app`);
-  });
   it('화면이 보이는지 테스트', () => {
     cy.get('h1').should('have.text', 'TODO-LIST');
     cy.get('.todoInput').should('be.visible');
@@ -98,7 +95,7 @@ function todoListTest(testPath) {
 const ADD_TODO_ITEM_TEXT = 'Cypress TEST';
 
 describe('투두리스트 테스트', () => {
-  describe('투두리스트 컴포넌트 테스트 - App', () => {
+  xdescribe('투두리스트 컴포넌트 테스트 - App', () => {
     todoListTest('/v1-todo-list-app');
   });
 
