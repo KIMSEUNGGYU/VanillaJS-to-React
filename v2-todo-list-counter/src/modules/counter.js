@@ -11,8 +11,7 @@ const initialState = {
   number: 0,
 };
 
-// function countReducer(state = initialState, action = {}) {
-const countReducer = (state = initialState, action = {}) => {
+function countReducer(state = initialState, action = {}) {
   switch (action.type) {
     case INCREASE:
       return {
@@ -33,6 +32,6 @@ const countReducer = (state = initialState, action = {}) => {
     default:
       return { ...state };
   }
-};
+}
 
 export default countReducer;

@@ -1,8 +1,8 @@
-import { $ } from '../utils/util.js';
-import Component from '../core/Component.js';
-import store from '../store.js';
+import { $ } from '../../utils/util.js';
+import Component from '../../core/Component.js';
+import { countStore as store } from '../../store.js';
 
-import { setDiff } from '../modules/counter.js';
+import { setDiff } from '../../modules/counter.js';
 
 export default class InputDiff extends Component {
   template() {
@@ -27,5 +27,7 @@ export default class InputDiff extends Component {
     if (!diff) return;
 
     store.dispatch(setDiff(+diff));
+
+    $('.diffInput').value = diff;
   }
 }
