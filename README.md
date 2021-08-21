@@ -11,29 +11,22 @@
 
 ### 1차
 
-- [ ] 리액트 컴포넌트 구현하기
-- [ ] 상태 관리 구현하기
-- [ ] 어느 정도 구현 됐다고 생각될 때, 블로그에 최대한 쉽게 작성하기 (다른 분들이 보고 이해가 되기 위해)
+- [x] 리액트 컴포넌트 구현하기
+- [x] 상태 관리 구현하기 (redux)
+- [x] 어느 정도 구현 됐다고 생각될 때, 블로그에 최대한 쉽게 작성하기 (다른 분들이 보고 이해가 되기 위해)
 
 ### 2차
 
-- [ ] 1차에서 구현한 것을 TypeScript 로 전환하기
+- [ ] 미들웨어 구현하기 (redux-thunk, redux-saga)
+- [ ] combineReducer 기능 구현하기 (현재는 각각의 상태를 생성하는 형태)
+- [ ] diff 알고리즘 구현하기?
+- [ ] 1, 2차에서 구현한 것을 TypeScript 로 전환하기
 
 ### 공통 (기타)
 
-- [ ] 각 단계별로 기능을 구현할 때 TDD 또는 간단한 미션(Counter, Todo-list 등)을 통해 구현하기!
+- [x] 각 단계별로 기능을 구현할 때 TDD 또는 간단한 미션(Counter, Todo-list 등)을 통해 구현하기!
 
-## App 화면
-
-### Counter App
-
-![COUNTER](https://user-images.githubusercontent.com/45627868/128938205-ac1eef6f-eba7-4d19-8ec3-c4851ce7c7df.PNG)
-
-### Todo-List App
-
-![TODO-LIST](https://user-images.githubusercontent.com/45627868/128938090-38b2bee1-37b8-47cb-962c-3a0683a1dc66.PNG)
-
-## 간단 DEMO
+## 데모
 
 ### Counter App
 
@@ -42,3 +35,7 @@
 ### Todo-List App
 
 ![TODO-LIST](https://user-images.githubusercontent.com/45627868/128938133-c6d2605a-7e94-4a0d-8c1e-ac26ce94f55b.gif)
+
+### Async-User App
+
+![async-user](https://user-images.githubusercontent.com/45627868/130328694-4fd87c5a-8f12-47e6-b419-c51af7e122a4.gif)
