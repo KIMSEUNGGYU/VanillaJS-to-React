@@ -11,18 +11,18 @@ export default class TodoAppender extends Component {
   template() {
     return `
       <form type="submit">
-        <input type="text" placeholder="할 일을 입력하세요." />
-        <button type="submit">등록</button>
+        <input class="todoInput" type="text" placeholder="할 일을 입력하세요." />
+        <button class="addTodoBtn" type="submit">등록</button>
       </form>
     `;
   }
-  componentDidMount() {
-    const { handleSubmit } = this;
 
-    $('form').addEventListener('submit', handleSubmit);
+  componentDidMount() {
+    $('form').addEventListener('submit', this.handleSubmit.bind(this));
   }
+
   // custom
-  handleSubmit = (event) => {
+  handleSubmit(event) {
     event.preventDefault();
     const { onAddTodoItem } = this.props;
 
@@ -35,5 +35,5 @@ export default class TodoAppender extends Component {
       done: false,
     });
     $('input').focus();
-  };
+  }
 }

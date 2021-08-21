@@ -17,21 +17,18 @@ export default class TodoFilter extends Component {
   }
 
   componentDidMount() {
-    // const { onSetFilter } = this.props;
-    this.$target.addEventListener('click', this.handleFilterButtonClick);
-    // console.log(this.$target);
-    // console.log(onSetFilter);
+    const { handleFilterButtonClick } = this;
+
+    this.$target.addEventListener('click', handleFilterButtonClick.bind(this));
   }
 
   // custom
-  handleFilterButtonClick = ({ target }) => {
+  handleFilterButtonClick({ target }) {
     if (target.tagName !== 'BUTTON') return;
 
     const { onSetFilter } = this.props;
 
     const filterType = target?.dataset['filterType'];
     onSetFilter(filterType);
-
-    // console.log(target, filterType);
-  };
+  }
 }

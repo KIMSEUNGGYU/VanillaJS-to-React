@@ -46,7 +46,7 @@ export default class App extends Component {
           )
           .join('')}
       </ul>
-      <div class="buttonGroups">
+      <div class="filter-group">
         <button class="allView">${FILTER['allView']}</button>
         <button class="activeView" style="color: blue">${FILTER['activeView']}</button>
         <button class="inactiveView" style="color: red">${FILTER['inactiveView']}</button>
@@ -57,7 +57,7 @@ export default class App extends Component {
   componentDidMount() {
     $('.todoInputForm').addEventListener('submit', this.handleTodoItem);
     $('.list').addEventListener('click', this.handleToggleAndDeleteItem);
-    $('.buttonGroups').addEventListener('click', this.handleFilterClick);
+    $('.filter-group').addEventListener('click', this.handleFilterClick);
   }
 
   // custom

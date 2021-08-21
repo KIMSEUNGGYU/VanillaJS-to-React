@@ -9,6 +9,8 @@ import TodoFilter from './components/TodoFilter.js';
 export default class App extends Component {
   constructor(...rest) {
     super(...rest);
+
+    this.initialState();
   }
 
   initialState() {
@@ -20,7 +22,7 @@ export default class App extends Component {
 
   template() {
     return `
-      <h1>TodoList</h1>
+      <h1>TODO-LIST</h1>
       <div class="todo-appender"></div>
       <div class="todo-list"></div>
       <div class="filter-group"></div>

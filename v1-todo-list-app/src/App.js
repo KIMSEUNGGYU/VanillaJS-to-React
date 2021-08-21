@@ -27,7 +27,7 @@ export default class App extends Component {
     const { handleAddTodoItem, handleTodoClick, handleFilterClick } = this;
     $('.todoInputForm').addEventListener('submit', handleAddTodoItem.bind(this));
     $('.list').addEventListener('click', handleTodoClick);
-    $('.buttonGroups').addEventListener('click', handleFilterClick);
+    $('.filter-group').addEventListener('click', handleFilterClick);
   }
 
   template() {
@@ -59,7 +59,7 @@ export default class App extends Component {
         )
         .join('')}
     </ul>
-    <div class="buttonGroups">
+    <div class="filter-group">
       <button class="allView">${FILTER['allView']}</button>
       <button class="activeView" style="color: blue">${FILTER['activeView']}</button>
       <button class="inactiveView" style="color: red">${FILTER['inactiveView']}</button>
