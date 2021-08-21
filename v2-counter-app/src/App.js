@@ -1,6 +1,6 @@
 import { $ } from './utils/util.js';
 import Component from './core/Component.js';
-import store from './store.js';
+import { counterStore } from './store.js';
 
 import { decrease, increase, setDiff } from './modules/counter.js';
 
@@ -8,11 +8,11 @@ export default class App extends Component {
   constructor(...rest) {
     super(...rest);
 
-    store.subscribe(this.render.bind(this)); // 필수, 컴포넌트 마다 해당 기능 호출해야함
+    counterStore.subscribe(this.render.bind(this));
   }
 
   template() {
-    const { diff, number } = store.getState();
+    const { diff, number } = counterStore.getState();
 
     return `
       <div class="container">
@@ -29,8 +29,8 @@ export default class App extends Component {
   }
 
   componentDidMount() {
-    $('.increaseBtn').addEventListener('click', () => store.dispatch(increase()));
-    $('.decreaseBtn').addEventListener('click', () => store.dispatch(decrease()));
+    $('.increaseBtn').addEventListener('click', () => counterStore.dispatch(increase()));
+    $('.decreaseBtn').addEventListener('click', () => counterStore.dispatch(decrease()));
     $('.setDiffForm').addEventListener('submit', this.handleChangeDiff);
   }
 
@@ -40,6 +40,6 @@ export default class App extends Component {
     const diff = $('.diffInput')?.value;
     if (!diff) return;
 
-    store.dispatch(setDiff(+diff));
+    counterStore.dispatch(setDiff(+diff));
   }
 }

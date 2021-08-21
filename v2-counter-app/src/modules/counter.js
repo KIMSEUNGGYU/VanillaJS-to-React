@@ -6,7 +6,7 @@ export const increase = () => ({ type: INCREASE });
 export const decrease = () => ({ type: DECREASE });
 export const setDiff = (payload) => ({ type: SET_DIFF, payload });
 
-export const initialState = {
+const initialState = {
   diff: 1,
   number: 0,
 };
