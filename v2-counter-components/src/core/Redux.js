@@ -1,35 +1,21 @@
-/**
- * Redux 기능
- * cnew Redux 부분이 createStore 부분
- */
+export function createStore(reducer) {
+  let state;
+  const listeners = new Set();
 
-import Observable from './Observable.js';
+  const getState = () => ({ ...state });
 
-class Redux extends Observable {
-  _state;
-  reducer;
-  constructor(reducer, initialState = {}) {
-    super();
+  const dispatch = (action) => {
+    state = reducer(state, action);
+    console.log('update state', state);
+    publish();
+  };
 
-    this._state = initialState;
-    this.reducer = reducer;
-  }
+  const subscribe = (fn) => listeners.add(fn);
+  const publish = () => listeners.forEach((fn) => fn());
 
-  _set(newState) {
-    this._state = newState;
-    this.publish();
-  }
-
-  getState() {
-    return this._state;
-  }
-
-  dispatch(action) {
-    const newState = this.reducer(this.getState(), action);
-    this._set(newState);
-  }
-}
-
-export function createStore(reducer, initialState = {}) {
-  return new Redux(reducer, initialState);
+  return {
+    getState,
+    dispatch,
+    subscribe,
+  };
 }

@@ -1,6 +1,6 @@
 import { $ } from '../utils/util.js';
 import Component from '../core/Component.js';
-import store from '../store.js';
+import { counterStore } from '../store.js';
 
 import { setDiff } from '../modules/counter.js';
 
@@ -10,7 +10,7 @@ export default class InputDiff extends Component {
   }
 
   template() {
-    const { diff } = store.getState();
+    const { diff } = counterStore.getState();
 
     return `
       <form class="setDiffForm">
@@ -30,6 +30,6 @@ export default class InputDiff extends Component {
     const diff = $('.diffInput')?.value;
     if (!diff) return;
 
-    store.dispatch(setDiff(+diff));
+    counterStore.dispatch(setDiff(+diff));
   }
 }

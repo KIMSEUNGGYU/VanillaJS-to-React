@@ -1,17 +1,8 @@
-import { createStore } from './core/Redux.js'; // redux
+import { createStore } from './core/redux.js'; // redux
 
-import countReducer, { initialState } from './modules/counter.js';
+import countReducer from './modules/counter.js';
 
-export default createStore(countReducer, initialState);
-/**
-기존 리액트에서는 index.js 파일에서 해당 함수를 호출하고 stroe 를 생성
-그 후 Provider 를 이용하여 컴포넌트를 전역에서 사용할 수 있게함.
+const counterStore = createStore(countReducer);
+counterStore.dispatch(); // reudx에서 초기 데이터를 설정하기 위한 요청
 
-하지만, 해당 프로젝트?에서는 Provider 기능이 없어 store.js 파일에서 생성하고
-필요한 파일 부분에서 사용하도록 함.
-
-import store = "store.js" // or
-impor {getState, dispatch} = "store.js"
-
-Multi Store 관리는 아직 고려 못함
- */
+export { counterStore };
