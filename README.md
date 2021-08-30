@@ -10,6 +10,7 @@
 > 구현한 내용을 정리한 글입니다.
 >
 > - [웹 컴포넌트 기능 설명](https://seunggyu.kr/posts/19)
+> - [상태 관리 - redux](https://seunggyu.kr/posts/20)
 
 ## 목표
 
